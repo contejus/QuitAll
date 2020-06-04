@@ -124,15 +124,13 @@
 		</dict>
 		<dict>
 			<key>cellClass</key>
-			<string>HBImageTableCell</string>
-			<key>height</key>
-			<integer>100</integer>
-			<key>icon</key>
-			<string>icon@2x.png</string>
-			<key>label</key>
-			<string>contejus</string>
+			<string>HBLinkTableCell</string>
+			<key>cell</key>
+			<string>PSButtonCell</string>
 			<key>action</key>
 			<string>contejusGithub</string>
+			<key>label</key>
+			<string>contejus</string>
 		</dict>
 	</array>
 	<key>title</key>
