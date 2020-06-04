@@ -56,7 +56,6 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://twitter.com/davewijk"]];
 }
 
-
 - (void)SourceCode {
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/vanwijkdave/QuitAll"]];
 }
@@ -65,4 +64,7 @@
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://paypal.me/vanwijkdave"]];
 }
 
+- (void)contejusGithub {
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://github.com/contejus"]];
+}
 @end

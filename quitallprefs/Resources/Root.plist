@@ -22,13 +22,11 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>com.daveapps.quitallprefs</string>
+			<string>com.contejus.quitallprefs</string>
 			<key>key</key>
 			<string>kEnabled</string>
 			<key>label</key>
 			<string>Enabled</string>
-			<!-- <key>PostNotification</key>
-			<string>com.purefocustwo/notif</string> -->
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -36,13 +34,11 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.daveapps.quitallprefs</string>
+			<string>com.contejus.quitallprefs</string>
 			<key>key</key>
 			<string>kDarkButton</string>
 			<key>label</key>
 			<string>Dark Button</string>
-			<!-- <key>PostNotification</key>
-			<string>com.purefocustwo/notif</string> -->
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -50,13 +46,11 @@
 			<key>default</key>
 			<false/>
 			<key>defaults</key>
-			<string>com.daveapps.quitallprefs</string>
+			<string>com.contejus.quitallprefs</string>
 			<key>key</key>
 			<string>kLeftPlacement</string>
 			<key>label</key>
 			<string>Place Button Top-Left</string>
-			<!-- <key>PostNotification</key>
-			<string>com.purefocustwo/notif</string> -->
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -64,13 +58,11 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>com.daveapps.quitallprefs</string>
+			<string>com.contejus.quitallprefs</string>
 			<key>key</key>
 			<string>kKeepMusicAlive</string>
 			<key>label</key>
 			<string>Don't Quit Now Playing App</string>
-			<!-- <key>PostNotification</key>
-			<string>com.purefocustwo/notif</string> -->
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -78,13 +70,11 @@
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>com.daveapps.quitallprefs</string>
+			<string>com.contejus.quitallprefs</string>
 			<key>key</key>
 			<string>kKeepNavAlive</string>
 			<key>label</key>
 			<string>Don't Quit Navigation</string>
-			<!-- <key>PostNotification</key>
-			<string>com.purefocustwo/notif</string> -->
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -126,8 +116,24 @@
 			<key>label</key>
 			<string>Donate ❤️</string>
 		</dict>
-
-
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Modified for iOS 12 by:</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBImageTableCell</string>
+			<key>height</key>
+			<integer>100</integer>
+			<key>icon</key>
+			<string>icon@2x.png</string>
+			<key>label</key>
+			<string>contejus</string>
+			<key>action</key>
+			<string>contejusGithub</string>
+		</dict>
 	</array>
 	<key>title</key>
 	<string>QuitAll</string>
