@@ -35,37 +35,33 @@
 
 		int width = self.contentView.bounds.size.width;
     
-    // CGRect frame = CGRectMake(0, 0, width, 215);
-    CGRect nameFrame = CGRectMake(20, 90, width, 50);
-    CGRect developerFrame = CGRectMake(22, 50, width, 50);
-    CGRect versionFrame = CGRectMake(22, 130, width, 50);
+        // CGRect frame = CGRectMake(0, 0, width, 215);
+        CGRect nameFrame = CGRectMake(20, 90, width, 50);
+        CGRect developerFrame = CGRectMake(22, 50, width, 50);
+        CGRect versionFrame = CGRectMake(22, 130, width, 50);
 
-    
-    packageNameLabel = [[UILabel alloc] initWithFrame:nameFrame];
-    [packageNameLabel setFont:[UIFont systemFontOfSize:50 weight: UIFontWeightSemibold] ];
-    packageNameLabel.textColor = [UIColor whiteColor];
-    packageNameLabel.text = @"QuitAll";
-//    packageNameLabel.backgroundColor = [UIColor redColor];
-    
-    developerLabel = [[UILabel alloc] initWithFrame:developerFrame];
-    [developerLabel setFont:[UIFont systemFontOfSize:25 weight: UIFontWeightMedium] ];
-    developerLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85];
-    developerLabel.text = @"Dave van Wijk";
-    
-    
-    versionLabel = [[UILabel alloc] initWithFrame:versionFrame];
-    [versionLabel setFont:[UIFont systemFontOfSize:22 weight: UIFontWeightMedium] ];
-    versionLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
-    versionLabel.text = @"1.0";
-    
-    bgView.backgroundColor = [UIColor colorWithRed:0.46 green:0.72 blue:0.84 alpha:1.0];
-    
-
-    
-    // [self addSubview:bgView];
-    [self addSubview:packageNameLabel];
-    [self addSubview:developerLabel];
-    [self addSubview:versionLabel];
+        
+        packageNameLabel = [[UILabel alloc] initWithFrame:nameFrame];
+        [packageNameLabel setFont:[UIFont systemFontOfSize:50 weight: UIFontWeightSemibold] ];
+        packageNameLabel.textColor = [UIColor whiteColor];
+        packageNameLabel.text = @"QuitAll";
+        
+        developerLabel = [[UILabel alloc] initWithFrame:developerFrame];
+        [developerLabel setFont:[UIFont systemFontOfSize:25 weight: UIFontWeightMedium] ];
+        developerLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.85];
+        developerLabel.text = @"Dave van Wijk";
+        
+        
+        versionLabel = [[UILabel alloc] initWithFrame:versionFrame];
+        [versionLabel setFont:[UIFont systemFontOfSize:22 weight: UIFontWeightMedium] ];
+        versionLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.8];
+        versionLabel.text = @"1.0.2";
+        
+        bgView.backgroundColor = [UIColor colorWithRed:0.46 green:0.72 blue:0.84 alpha:1.0];
+        
+        [self addSubview:packageNameLabel];
+        [self addSubview:developerLabel];
+        [self addSubview:versionLabel];
 
     }
     	return self;
@@ -141,22 +137,21 @@
     CGRect developerFrame = CGRectMake(24, 83, width, 50);
     CGRect versionFrame = CGRectMake(186, 54, width, 50);
     
-        packageNameLabel = [[UILabel alloc] initWithFrame:nameFrame];
-        [packageNameLabel setFont:[UIFont systemFontOfSize:50 weight: UIFontWeightSemibold] ];
-        packageNameLabel.textColor = [UIColor whiteColor];
-        packageNameLabel.text = @"Zodiac";
-    //    packageNameLabel.backgroundColor = [UIColor redColor];
-        
-        developerLabel = [[UILabel alloc] initWithFrame:developerFrame];
-        [developerLabel setFont:[UIFont systemFontOfSize:20 weight: UIFontWeightRegular] ];
-        developerLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
-        developerLabel.text = @"Dave van Wijk";
-        
-        
-        versionLabel = [[UILabel alloc] initWithFrame:versionFrame];
-        [versionLabel setFont:[UIFont systemFontOfSize:25 weight: UIFontWeightSemibold] ];
-        versionLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.65];
-        versionLabel.text = @"v1.2.3";
+    packageNameLabel = [[UILabel alloc] initWithFrame:nameFrame];
+    [packageNameLabel setFont:[UIFont systemFontOfSize:50 weight: UIFontWeightSemibold] ];
+    packageNameLabel.textColor = [UIColor whiteColor];
+    packageNameLabel.text = @"Zodiac";
+    
+    developerLabel = [[UILabel alloc] initWithFrame:developerFrame];
+    [developerLabel setFont:[UIFont systemFontOfSize:20 weight: UIFontWeightRegular] ];
+    developerLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.7];
+    developerLabel.text = @"Dave van Wijk";
+    
+    
+    versionLabel = [[UILabel alloc] initWithFrame:versionFrame];
+    [versionLabel setFont:[UIFont systemFontOfSize:25 weight: UIFontWeightSemibold] ];
+    versionLabel.textColor = [UIColor colorWithRed:1 green:1 blue:1 alpha:0.65];
+    versionLabel.text = @"v1.2.3";
         
     
     bgView.backgroundColor = [UIColor colorWithRed:0.46 green:0.72 blue:0.84 alpha:1.0];
