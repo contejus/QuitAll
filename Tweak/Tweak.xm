@@ -18,7 +18,7 @@ UILabel *fromLabel;
 @end
 
 @interface SBDisplayItem: NSObject
-@property (nonatomic,copy,readonly) NSString * bundleIdentifier;               //@synthesize bundleIdentifier=_bundleIdentifier - In the implementation block
+@property (nonatomic,copy,readonly) NSString * displayIdentifier;               //@synthesize bundleIdentifier=_bundleIdentifier - In the implementation block
 @end
 
 @interface SBApplication : NSObject
@@ -35,15 +35,16 @@ UILabel *fromLabel;
 //interfaces
 @interface SBMainSwitcherViewController: UIViewController
 + (id)sharedInstance;
--(id)recentAppLayouts;
+-(id)appLayouts;
 -(void)_rebuildAppListCache;
 -(void)_destroyAppListCache;
 -(void)_removeCardForDisplayIdentifier:(id)arg1 ;
--(void)_deleteAppLayout:(id)arg1 forReason:(long long)arg2;
+-(void)_quitAppsRepresentedByAppLayout:(id)arg1 forReason:(long long)arg2 ;
 @end
 
 @interface SBAppLayout:NSObject
 @property (nonatomic,copy) NSDictionary * rolesToLayoutItemsMap;                                         //@synthesize rolesToLayoutItemsMap=_rolesToLayoutItemsMap - In the implementation block
++(id)homeScreenAppLayout;
 @end
 
 @interface SBRecentAppLayouts: NSObject
@@ -159,42 +160,42 @@ UILabel *fromLabel;
 %new
 
 -(void) buttonClicked:(UIButton*)sender {
-	id one = @1;
+	// id one = @1;
 
 	//remove the apps
 	SBMainSwitcherViewController *mainSwitcher = [%c(SBMainSwitcherViewController) sharedInstance];
-    NSArray *items = mainSwitcher.recentAppLayouts;
-        for(SBAppLayout * item in items) {
-					SBDisplayItem *itemz = [item.rolesToLayoutItemsMap objectForKey:one];
-					NSString *bundleID = itemz.bundleIdentifier;
-					NSString *nowPlayingID = [[[%c(SBMediaController) sharedInstance] nowPlayingApplication] bundleIdentifier];
+    NSArray *items = mainSwitcher.appLayouts;
+        for(id item in items) {
+			// SBDisplayItem *itemz = [item.rolesToLayoutItemsMap objectForKey:one];
+			// NSString *bundleID = itemz.displayIdentifier;
+			// NSString *nowPlayingID = [[[%c(SBMediaController) sharedInstance] nowPlayingApplication] bundleIdentifier];
 
-					if (dontQuitNowPlaying && dontQuitNavigation) {
-						if (![bundleID isEqualToString: nowPlayingID] && ![bundleID isEqualToString:@"com.google.Maps"] && ![bundleID isEqualToString:@"com.apple.Maps"] && ![bundleID isEqualToString:@"com.waze.iphone"]) {
-							[mainSwitcher _deleteAppLayout:item forReason: 1];
+			// if (dontQuitNowPlaying && dontQuitNavigation) {
+			// 	if (![bundleID isEqualToString: nowPlayingID] && ![bundleID isEqualToString:@"com.google.Maps"] && ![bundleID isEqualToString:@"com.apple.Maps"] && ![bundleID isEqualToString:@"com.waze.iphone"]) {
+			// 		[mainSwitcher _removeAppLayout:item forReason: 1 modelMutationBlock: item completion: item];
 
-						}
-					} else if (!dontQuitNowPlaying && dontQuitNavigation) {
-						if (![bundleID isEqualToString:@"com.google.Maps"] || ![bundleID isEqualToString:@"com.apple.Maps"] || ![bundleID isEqualToString:@"com.waze.iphone"]) {
-							[mainSwitcher _deleteAppLayout:item forReason: 1];
-
-						}
-					} else if (dontQuitNowPlaying && !dontQuitNavigation) {
-						if (![bundleID isEqualToString: nowPlayingID] ) {
-							[mainSwitcher _deleteAppLayout:item forReason: 1];
-
-						}
-					} else {
-						[mainSwitcher _deleteAppLayout:item forReason: 1];
-					}
+			// 	}
+			// } else if (!dontQuitNowPlaying && dontQuitNavigation) {
+			// 	if (![bundleID isEqualToString:@"com.google.Maps"] || ![bundleID isEqualToString:@"com.apple.Maps"] || ![bundleID isEqualToString:@"com.waze.iphone"]) {
+			// 		[mainSwitcher _removeAppLayout:item forReason: 1 modelMutationBlock: item completion: item];
+			// 	}
+			// } else if (dontQuitNowPlaying && !dontQuitNavigation) {
+			// 	if (![bundleID isEqualToString: nowPlayingID] ) {
+			// 		[mainSwitcher _removeAppLayout:item forReason: 1 modelMutationBlock: item completion: item];
+			// 	}
+			// } else {
+			if(item != [%c(SBAppLayout) homeScreenAppLayout]) {
+				[mainSwitcher _quitAppsRepresentedByAppLayout:item forReason: 1];
+			}
+			// }
         }
 
 	//hide the button
-		[UIView animateWithDuration:0.3 animations:^ {
-				buttonView.alpha = 0;
-				fromLabel.alpha = 0;
+	[UIView animateWithDuration:0.3 animations:^ {
+			buttonView.alpha = 0;
+			fromLabel.alpha = 0;
 
-			}];
+		}];
 	transparantButton = true;
 
  }
@@ -204,18 +205,14 @@ UILabel *fromLabel;
 
 %hook SBMainSwitcherViewController
 //hide the button when going back to the springboard in a smooth way
--(void)switcherContentController:(id)arg1 setContainerStatusBarHidden:(BOOL)arg2 animationDuration:(double)arg3 {
-	if (arg2 == false) {
-			[UIView animateWithDuration:0.3 animations:^ {
-				buttonView.alpha = 0;
-				fromLabel.alpha = 0;
+-(void)switcherContentController: (id)arg1 selectedAppLayout:(id)arg2 {
+	[UIView animateWithDuration:0.3 animations:^ {
+		buttonView.alpha = 0;
+		fromLabel.alpha = 0;
 
-			}];
-		transparantButton = true;
-
-	}
+	}];
+	transparantButton = true;
 	%orig;
-
 }
 %end
 
