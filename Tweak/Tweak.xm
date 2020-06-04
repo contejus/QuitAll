@@ -18,7 +18,7 @@ UILabel *fromLabel;
 @end
 
 @interface SBDisplayItem: NSObject
-@property (nonatomic,copy,readonly) NSString * bundleIdentifier;               //@synthesize bundleIdentifier=_bundleIdentifier - In the implementation block
+@property (nonatomic,copy,readonly) NSString * displayIdentifier;               //@synthesize bundleIdentifier=_bundleIdentifier - In the implementation block
 @end
 
 @interface SBApplication : NSObject
@@ -169,7 +169,7 @@ UILabel *fromLabel;
     NSArray *items = mainSwitcher.appLayouts;
         for(SBAppLayout* item in items) {
 			SBDisplayItem *itemz = [item.rolesToLayoutItemsMap objectForKey:one];
-			NSString *bundleID = itemz.bundleIdentifier;
+			NSString *bundleID = itemz.displayIdentifier;
 			NSString *nowPlayingID = [[[%c(SBMediaController) sharedInstance] nowPlayingApplication] bundleIdentifier];
 
 			if (dontQuitNowPlaying && [bundleID isEqualToString: nowPlayingID]) {
