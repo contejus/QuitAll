@@ -18,7 +18,7 @@ UILabel *fromLabel;
 @end
 
 @interface SBDisplayItem: NSObject
-@property (nonatomic,copy,readonly) NSString * displayIdentifier;               //@synthesize bundleIdentifier=_bundleIdentifier - In the implementation block
+@property (nonatomic,copy,readonly) NSString * bundleIdentifier;               //@synthesize bundleIdentifier=_bundleIdentifier - In the implementation block
 @end
 
 @interface SBApplication : NSObject
@@ -45,6 +45,8 @@ UILabel *fromLabel;
 @interface SBAppLayout:NSObject
 @property (nonatomic,copy) NSDictionary * rolesToLayoutItemsMap;                                         //@synthesize rolesToLayoutItemsMap=_rolesToLayoutItemsMap - In the implementation block
 +(id)homeScreenAppLayout;
+-(id)itemForLayoutRole:(long long)arg1 ;
+-(id)appLayoutWithItemsPassingTest:(id)arg1 ;
 @end
 
 @interface SBRecentAppLayouts: NSObject
@@ -160,34 +162,26 @@ UILabel *fromLabel;
 %new
 
 -(void) buttonClicked:(UIButton*)sender {
-	// id one = @1;
+	id one = @1;
 
 	//remove the apps
 	SBMainSwitcherViewController *mainSwitcher = [%c(SBMainSwitcherViewController) sharedInstance];
     NSArray *items = mainSwitcher.appLayouts;
-        for(id item in items) {
-			// SBDisplayItem *itemz = [item.rolesToLayoutItemsMap objectForKey:one];
-			// NSString *bundleID = itemz.displayIdentifier;
-			// NSString *nowPlayingID = [[[%c(SBMediaController) sharedInstance] nowPlayingApplication] bundleIdentifier];
+        for(SBAppLayout* item in items) {
+			SBDisplayItem *itemz = [item.rolesToLayoutItemsMap objectForKey:one];
+			NSString *bundleID = itemz.bundleIdentifier;
+			NSString *nowPlayingID = [[[%c(SBMediaController) sharedInstance] nowPlayingApplication] bundleIdentifier];
 
-			// if (dontQuitNowPlaying && dontQuitNavigation) {
-			// 	if (![bundleID isEqualToString: nowPlayingID] && ![bundleID isEqualToString:@"com.google.Maps"] && ![bundleID isEqualToString:@"com.apple.Maps"] && ![bundleID isEqualToString:@"com.waze.iphone"]) {
-			// 		[mainSwitcher _removeAppLayout:item forReason: 1 modelMutationBlock: item completion: item];
-
-			// 	}
-			// } else if (!dontQuitNowPlaying && dontQuitNavigation) {
-			// 	if (![bundleID isEqualToString:@"com.google.Maps"] || ![bundleID isEqualToString:@"com.apple.Maps"] || ![bundleID isEqualToString:@"com.waze.iphone"]) {
-			// 		[mainSwitcher _removeAppLayout:item forReason: 1 modelMutationBlock: item completion: item];
-			// 	}
-			// } else if (dontQuitNowPlaying && !dontQuitNavigation) {
-			// 	if (![bundleID isEqualToString: nowPlayingID] ) {
-			// 		[mainSwitcher _removeAppLayout:item forReason: 1 modelMutationBlock: item completion: item];
-			// 	}
-			// } else {
-			if(item != [%c(SBAppLayout) homeScreenAppLayout]) {
-				[mainSwitcher _quitAppsRepresentedByAppLayout:item forReason: 1];
+			if (dontQuitNowPlaying && [bundleID isEqualToString: nowPlayingID]) {
+				;
+			} 
+			if (dontQuitNavigation && ([bundleID isEqualToString:@"com.google.Maps"] || [bundleID isEqualToString:@"com.apple.Maps"] || [bundleID isEqualToString:@"com.waze.iphone"])) {
+				;
+			} else {
+				if(item != [%c(SBAppLayout) homeScreenAppLayout]) {
+					[mainSwitcher _quitAppsRepresentedByAppLayout:item forReason: 1];
+				}
 			}
-			// }
         }
 
 	//hide the button
