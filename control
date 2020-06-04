@@ -1,7 +1,7 @@
-Package: com.daveapps.quitall
+Package: com.contejus.quitall
 Name: QuitAll
 Depends: mobilesubstrate, ws.hbang.common (>= 1.11)
-Version: 1.0.1
+Version: 1.0.2
 Architecture: iphoneos-arm
 Description: One tweak to quit them all (modified to work on iOS 12 by contejus)
 Maintainer: Dave van Wijk, contejus

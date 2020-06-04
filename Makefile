@@ -1,6 +1,6 @@
 INSTALL_TARGET_PROCESSES = SpringBoard
 ARCHS=arm64
-
+FINALPACKAGE=1
 include $(THEOS)/makefiles/common.mk
 
 TWEAK_NAME = QuitAll
