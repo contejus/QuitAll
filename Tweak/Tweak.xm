@@ -38,7 +38,7 @@ UILabel *fromLabel;
 -(id)appLayouts;
 -(void)_rebuildAppListCache;
 -(void)_destroyAppListCache;
--(void)_removeCardForDisplayIdentifier:(id)arg1 ;
+-(void)_removeCardForbundleIdentifier:(id)arg1 ;
 -(void)_quitAppsRepresentedByAppLayout:(id)arg1 forReason:(long long)arg2 ;
 @end
 
@@ -162,14 +162,12 @@ UILabel *fromLabel;
 %new
 
 -(void) buttonClicked:(UIButton*)sender {
-	id one = @1;
-
 	//remove the apps
 	SBMainSwitcherViewController *mainSwitcher = [%c(SBMainSwitcherViewController) sharedInstance];
     NSArray *items = mainSwitcher.appLayouts;
         for(SBAppLayout* item in items) {
-			SBDisplayItem *itemz = [item.rolesToLayoutItemsMap objectForKey:one];
-			NSString *bundleID = itemz.displayIdentifier;
+			NSArray *values = [item.rolesToLayoutItemsMap allValues];
+			NSString *bundleID = [[values objectAtIndex:0] displayIdentifier];
 			NSString *nowPlayingID = [[[%c(SBMediaController) sharedInstance] nowPlayingApplication] bundleIdentifier];
 
 			if (dontQuitNowPlaying && [bundleID isEqualToString: nowPlayingID]) {
