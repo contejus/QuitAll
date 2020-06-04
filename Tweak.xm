@@ -1,4 +1,3 @@
-//import shit
 #import <Cephei/HBPreferences.h>
 
 
@@ -8,7 +7,8 @@ bool leftButtonPlacement = false;
 bool darkStyle = false;
 bool dontQuitNowPlaying = true;
 bool dontQuitNavigation = true;
-//variable shit
+
+// vars
 bool addedButton = false;
 bool transparentButton = false;
 UIView *buttonView;
@@ -161,6 +161,7 @@ UILabel *fromLabel;
 
 %new
 
+// TODO: merge iOS 13 code as a separate group, then call code in %ctor
 -(void) buttonClicked:(UIButton*)sender {
 	//remove the apps
 	SBMainSwitcherViewController *mainSwitcher = [%c(SBMainSwitcherViewController) sharedInstance];
@@ -212,7 +213,7 @@ UILabel *fromLabel;
 
 
 void loadPrefs() {
-	HBPreferences *file = [[HBPreferences alloc] initWithIdentifier:@"com.daveapps.quitallprefs"];
+	HBPreferences *file = [[HBPreferences alloc] initWithIdentifier:@"com.contejus.quitallprefs"];
 	enabled = [([file objectForKey:@"kEnabled"] ?: @(YES)) boolValue];
 	darkStyle = [([file objectForKey:@"kDarkButton"] ?: @(NO)) boolValue];
 	leftButtonPlacement = [([file objectForKey:@"kLeftPlacement"] ?: @(NO)) boolValue];
